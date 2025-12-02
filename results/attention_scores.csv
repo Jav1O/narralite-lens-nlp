@@ -1,0 +1,13 @@
+scenario,seed,character,attention_score
+enchanted_forest,0,Luna,0.008610393351188655
+enchanted_forest,0,Orion,0.005842621719832727
+enchanted_forest,1,Luna,0.010104270411651288
+enchanted_forest,1,Orion,0.007117091041072836
+enchanted_forest,2,Luna,0.007430535664499939
+enchanted_forest,2,Orion,0.005024581930523636
+space_station,0,Mira,0.006988823262697558
+space_station,0,Kai,0.004006138161934118
+space_station,1,Mira,0.009999113969080336
+space_station,1,Kai,0.0072689031653976575
+space_station,2,Mira,0.008807528361634237
+space_station,2,Kai,0.005696676248690023

@@ -19,12 +19,6 @@ class Scenario:
 
 
 def build_prompt(scenario: Scenario) -> str:
-    """
-    Build a textual prompt from a Scenario:
-    - list of characters with traits
-    - setting description
-    - task instruction
-    """
     lines = ["Characters:"]
     for ch in scenario.characters:
         traits_str = ", ".join(ch.traits)
@@ -35,6 +29,8 @@ def build_prompt(scenario: Scenario) -> str:
 
     lines.append("\nTask:")
     lines.append(scenario.instruction)
+
+    lines.append("\nStory:\n")
 
     return "\n".join(lines)
 

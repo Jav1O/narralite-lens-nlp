@@ -6,12 +6,22 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from .prompts import Scenario, build_prompt
 
 
-def load_model(model_name: str = "distilgpt2", device: Optional[str] = None):
+def load_model(model_name: str = "gpt2", device: Optional[str] = None):
     """
-    Load tokenizer and model (DistilGPT-2 by default) and move model to device.
+    Load tokenizer and model (GPT-2 small by default) and move model to device.
     """
+    # 👇 Forzamos una implementación de atención que soporte output_attentions
+    model_kwargs = {
+        "attn_implementation": "eager",
+    }
+
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name, **model_kwargs)
+
+    # Asegurarnos de que hay pad_token para quitar warnings
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+        model.config.pad_token_id = tokenizer.eos_token_id
 
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
